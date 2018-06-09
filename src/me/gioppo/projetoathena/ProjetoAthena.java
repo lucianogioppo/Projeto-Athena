@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package me.gioppo.projetoathena;
 
 import java.util.Scanner;
@@ -19,10 +14,6 @@ import me.gioppo.projetoathena.servicos.RepositorioDeFuncionariosEmMemoria;
 import me.gioppo.projetoathena.servicos.RepositorioDeUsuariosEmMemoria;
 import me.gioppo.projetoathena.servicos.SessaoDeUsuarioEmMemoria;
 
-/**
- *
- * @author alisonbnt
- */
 public class ProjetoAthena {
 
     /**
