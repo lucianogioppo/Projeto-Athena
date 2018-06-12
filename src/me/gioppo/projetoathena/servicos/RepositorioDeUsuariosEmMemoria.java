@@ -11,7 +11,7 @@ import me.gioppo.projetoathena.modelo.base.Senha;
 
 public class RepositorioDeUsuariosEmMemoria implements RepositorioDeUsuarios{
 
-    private List<Usuario> usuariosEmMemoria;
+    private final List<Usuario> usuariosEmMemoria;
     
     public RepositorioDeUsuariosEmMemoria(){
         usuariosEmMemoria = new ArrayList<>();

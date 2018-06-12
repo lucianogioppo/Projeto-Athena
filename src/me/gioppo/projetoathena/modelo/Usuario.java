@@ -10,9 +10,9 @@ abstract public class Usuario extends Pessoa{
     public static final int TIPO_PROFESSOR = 2;
     public static final int TIPO_DIRETOR = 3;
     
-    private String nomeDeUsuario;
-    private Senha senha;
-    private int tipoDeUsuario;
+    private final String nomeDeUsuario;
+    private final Senha senha;
+    private final int tipoDeUsuario;
     
     public Usuario(String identificador, String nomeDeUsuario, Senha senha, int tipoDeUsuario, String primeiroNome, String sobrenome, Cpf cpf) {
         super(identificador, primeiroNome, sobrenome, cpf);

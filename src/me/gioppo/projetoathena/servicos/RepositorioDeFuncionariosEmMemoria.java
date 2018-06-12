@@ -7,7 +7,7 @@ import me.gioppo.projetoathena.modelo.Funcionario;
 
 public class RepositorioDeFuncionariosEmMemoria implements RepositorioDeFuncionarios{
 
-    private List<Funcionario> funcionariosEmMemoria;
+    private final List<Funcionario> funcionariosEmMemoria;
     
     public RepositorioDeFuncionariosEmMemoria(){
         this.funcionariosEmMemoria = new ArrayList<>();
@@ -47,5 +47,10 @@ public class RepositorioDeFuncionariosEmMemoria implements RepositorioDeFunciona
     
     public int contarFuncionarios() {
         return this.funcionariosEmMemoria.size();
+    }
+
+    @Override
+    public List<Funcionario> listarFuncionarios() {
+        return funcionariosEmMemoria;
     }
 }

@@ -9,4 +9,8 @@ public class Funcionario extends Usuario{
         super(identificador, nomeDeUsuario, senha, Usuario.TIPO_FUNCIONARIO, primeiroNome, sobrenome, cpf);
     }
     
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = primeiroNome;
+    }
+    
 }

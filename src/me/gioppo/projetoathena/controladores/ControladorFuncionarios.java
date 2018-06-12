@@ -1,46 +1,53 @@
 package me.gioppo.projetoathena.controladores;
 
+import java.util.List;
 import me.gioppo.projetoathena.contratos.RepositorioDeFuncionarios;
-import me.gioppo.projetoathena.contratos.SessaoDeUsuario;
+import me.gioppo.projetoathena.contratos.verificadores.VerificadorControleFuncionario;
 import me.gioppo.projetoathena.modelo.Funcionario;
-import me.gioppo.projetoathena.modelo.Usuario;
 
 public class ControladorFuncionarios {
 
-    private SessaoDeUsuario sessaoDeUsuario;
-    private RepositorioDeFuncionarios repositorioDeFuncionarios;
+    private final VerificadorControleFuncionario verificadorControleFuncionario;
+    private final RepositorioDeFuncionarios repositorioDeFuncionarios;
 
-    public ControladorFuncionarios(SessaoDeUsuario sessaoDeUsuario, RepositorioDeFuncionarios repositorioDeFuncionarios) {
-        this.sessaoDeUsuario = sessaoDeUsuario;
+    public ControladorFuncionarios(
+            VerificadorControleFuncionario verificarControleFuncionario,
+            RepositorioDeFuncionarios repositorioDeFuncionarios
+    ) {
+        this.verificadorControleFuncionario = verificarControleFuncionario;
         this.repositorioDeFuncionarios = repositorioDeFuncionarios;
     }
 
     public void incluirFuncionario(Funcionario funcionario) {
-        if (!this.sessaoDeUsuario.sessaoAtiva()) {
-            System.out.println("Você precisa estar logado para realizar essa ação");
-            return;
+        if(verificadorControleFuncionario.verificarPermissaoParaIncluir()){
+            repositorioDeFuncionarios.salvarFuncionario(funcionario);
         }
-
-        Usuario usuarioLogado = this.sessaoDeUsuario.getUsuarioLogado();
-        if (usuarioLogado.getTipoDeUsuario() != Usuario.TIPO_SECRETARIA) {
-            System.out.println("Você não tem permissão para realizar essa ação");
-            return;
-        }
-
-        this.repositorioDeFuncionarios.salvarFuncionario(funcionario);
-
     }
 
     public void atualizarFuncionario(Funcionario funcionario) {
-
+        if(verificadorControleFuncionario.verificarPermissaoParaIncluir()){
+            repositorioDeFuncionarios.atualizarFuncionario(funcionario);
+        }
     }
-
-    public void visualizarFuncionario(String identificador) {
-
+    
+    public List<Funcionario> listarFuncionarios() {
+        if(verificadorControleFuncionario.verificarPermissaoParaVisualizar()){
+            return repositorioDeFuncionarios.listarFuncionarios();
+        }
+        return null;
+    }
+    
+    public Funcionario visualizarFuncionario(String identificador) {
+        if(verificadorControleFuncionario.verificarPermissaoParaVisualizar()){
+            return repositorioDeFuncionarios.buscarPorIdentificador(identificador);
+        }
+        return null;
     }
 
     public void excluirFuncionario(Funcionario funcionario) {
-
+        if(verificadorControleFuncionario.verificarPermissaoParaIncluir()){
+            repositorioDeFuncionarios.excluirFuncionario(funcionario);
+        }
     }
 
 }
