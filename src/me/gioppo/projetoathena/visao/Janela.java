@@ -5,6 +5,7 @@
  */
 package me.gioppo.projetoathena.visao;
 
+import java.awt.Dimension;
 import javax.swing.JPanel;
 
 /**
@@ -17,9 +18,16 @@ public class Janela extends javax.swing.JFrame {
     
     public Janela() {
         initComponents();
-        this.setTitle("");
+        configurarJanela();
     }
 
+    private void configurarJanela() {
+        this.setTitle("Projeto Athena");
+        this.setPreferredSize(new Dimension(640, 420));
+        this.setMinimumSize(new Dimension(640, 420));
+        setLocationRelativeTo(null);
+    }
+    
     public void setPainelAtual(JPanel painel) {
         if(painelAtual != null){
             this.getContentPane().remove(painelAtual);

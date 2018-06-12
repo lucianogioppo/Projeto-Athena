@@ -7,8 +7,8 @@ import me.gioppo.projetoathena.modelo.base.Senha;
 
 public class ControladorLogin {
     
-    private RepositorioDeUsuarios repositorioDeUsuarios;
-    private SessaoDeUsuario sessaoDeUsuario;
+    private final RepositorioDeUsuarios repositorioDeUsuarios;
+    private final SessaoDeUsuario sessaoDeUsuario;
 
     public ControladorLogin(RepositorioDeUsuarios repositorioDeUsuarios, SessaoDeUsuario sessaoDeUsuario) {
         this.repositorioDeUsuarios = repositorioDeUsuarios;
