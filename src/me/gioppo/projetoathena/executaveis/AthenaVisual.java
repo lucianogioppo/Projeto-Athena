@@ -1,4 +1,4 @@
-package me.gioppo.projetoathena;
+package me.gioppo.projetoathena.executaveis;
 
 import me.gioppo.projetoathena.visao.ControleDeTela;
 

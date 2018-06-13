@@ -58,6 +58,7 @@ public class VerificadorControleFuncionarioFuncao implements VerificadorControle
         Usuario usuarioLogado = sessao.getUsuarioLogado();
         if(usuarioLogado.getTipoDeUsuario() != Usuario.TIPO_SECRETARIA){
             mensageiro.erro(mensagemSemPermissao);
+            return false;
         }
         
         return true;

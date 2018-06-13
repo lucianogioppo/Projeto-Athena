@@ -5,9 +5,9 @@ import me.gioppo.projetoathena.modelo.Funcionario;
 
 public interface RepositorioDeFuncionarios {
     
-    public void salvarFuncionario(Funcionario funcionario);
-    public void excluirFuncionario(Funcionario funcionario);
-    public void atualizarFuncionario(Funcionario funcionario);
+    public boolean salvarFuncionario(Funcionario funcionario);
+    public boolean excluirFuncionario(Funcionario funcionario);
+    public boolean atualizarFuncionario(Funcionario funcionario);
     public Funcionario buscarPorIdentificador(String identificador);
     public List<Funcionario> listarFuncionarios();
 

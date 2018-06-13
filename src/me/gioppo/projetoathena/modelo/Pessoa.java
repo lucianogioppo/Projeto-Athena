@@ -27,5 +27,15 @@ abstract public class Pessoa {
     public Cpf getCpf() {
         return cpf;
     }
+
+    public String getPrimeiroNome() {
+        return primeiroNome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+    
+    
     
 }

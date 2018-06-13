@@ -2,6 +2,7 @@ package me.gioppo.projetoathena.controladores;
 
 import java.util.List;
 import me.gioppo.projetoathena.contratos.RepositorioDeFuncionarios;
+import me.gioppo.projetoathena.contratos.RepositorioDeUsuarios;
 import me.gioppo.projetoathena.contratos.verificadores.VerificadorControleFuncionario;
 import me.gioppo.projetoathena.modelo.Funcionario;
 
@@ -9,25 +10,32 @@ public class ControladorFuncionarios {
 
     private final VerificadorControleFuncionario verificadorControleFuncionario;
     private final RepositorioDeFuncionarios repositorioDeFuncionarios;
+    private final RepositorioDeUsuarios repositorioDeUsuarios;
 
     public ControladorFuncionarios(
             VerificadorControleFuncionario verificarControleFuncionario,
-            RepositorioDeFuncionarios repositorioDeFuncionarios
+            RepositorioDeFuncionarios repositorioDeFuncionarios,
+            RepositorioDeUsuarios repositorioDeUsuarios
     ) {
         this.verificadorControleFuncionario = verificarControleFuncionario;
         this.repositorioDeFuncionarios = repositorioDeFuncionarios;
+        this.repositorioDeUsuarios = repositorioDeUsuarios;
     }
 
-    public void incluirFuncionario(Funcionario funcionario) {
+    public boolean incluirFuncionario(Funcionario funcionario) {
         if(verificadorControleFuncionario.verificarPermissaoParaIncluir()){
-            repositorioDeFuncionarios.salvarFuncionario(funcionario);
+            return repositorioDeFuncionarios.salvarFuncionario(funcionario) && repositorioDeUsuarios.adicionarUsuario(funcionario);
+        }else{
+            return false;
         }
     }
 
-    public void atualizarFuncionario(Funcionario funcionario) {
+    public boolean atualizarFuncionario(Funcionario funcionario) {
         if(verificadorControleFuncionario.verificarPermissaoParaIncluir()){
-            repositorioDeFuncionarios.atualizarFuncionario(funcionario);
+            return repositorioDeFuncionarios.atualizarFuncionario(funcionario);
         }
+        
+        return false;
     }
     
     public List<Funcionario> listarFuncionarios() {
@@ -44,10 +52,12 @@ public class ControladorFuncionarios {
         return null;
     }
 
-    public void excluirFuncionario(Funcionario funcionario) {
+    public boolean excluirFuncionario(Funcionario funcionario) {
         if(verificadorControleFuncionario.verificarPermissaoParaIncluir()){
-            repositorioDeFuncionarios.excluirFuncionario(funcionario);
+            return repositorioDeFuncionarios.excluirFuncionario(funcionario);
         }
+        
+        return false;
     }
 
 }

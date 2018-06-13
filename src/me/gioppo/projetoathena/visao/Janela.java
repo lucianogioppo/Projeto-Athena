@@ -35,6 +35,8 @@ public class Janela extends javax.swing.JFrame {
         this.painelAtual = painel;
         this.getContentPane().add(painelAtual);
         pack();
+        revalidate();
+        repaint();
     }
     
     /**

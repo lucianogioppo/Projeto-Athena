@@ -6,6 +6,7 @@
 package me.gioppo.projetoathena.visao;
 
 import me.gioppo.projetoathena.contratos.SessaoDeUsuario;
+import me.gioppo.projetoathena.contratos.verificadores.VerificadorControleFuncionario;
 import me.gioppo.projetoathena.modelo.Usuario;
 
 /**
@@ -15,9 +16,11 @@ import me.gioppo.projetoathena.modelo.Usuario;
 public class PainelMenuPrincipal extends javax.swing.JPanel implements PainelTrocavel{
 
     private final SessaoDeUsuario sessaoDeUsuario;
+    private final VerificadorControleFuncionario verificadorFuncionario;
     
-    public PainelMenuPrincipal(SessaoDeUsuario sessaoDeUsuario) {
+    public PainelMenuPrincipal(SessaoDeUsuario sessaoDeUsuario, VerificadorControleFuncionario verificadorFuncionario) {
         this.sessaoDeUsuario = sessaoDeUsuario;
+        this.verificadorFuncionario = verificadorFuncionario;
         initComponents();
     }
 
@@ -39,6 +42,8 @@ public class PainelMenuPrincipal extends javax.swing.JPanel implements PainelTro
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(640, 420));
 
@@ -46,20 +51,46 @@ public class PainelMenuPrincipal extends javax.swing.JPanel implements PainelTro
         nomeUsuarioLogado.setText("jLabel1");
 
         jButton1.setText("Adicionar Funcionario");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Visualizar Funcionarios");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Adicionar Professor");
+        jButton3.setEnabled(false);
 
         jButton4.setText("Visualizar Professores");
+        jButton4.setEnabled(false);
 
         jButton5.setText("Adicionar Aluno");
+        jButton5.setEnabled(false);
 
         jButton6.setText("Visualizar Alunos");
+        jButton6.setEnabled(false);
 
         jButton7.setText("Adicionar Turma");
+        jButton7.setEnabled(false);
 
         jButton8.setText("Visualizar Turmas");
+        jButton8.setEnabled(false);
+
+        jButton9.setText("Fazer Logout");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("Editar Perfil");
+        jButton10.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -82,8 +113,11 @@ public class PainelMenuPrincipal extends javax.swing.JPanel implements PainelTro
                             .addComponent(jButton4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 64, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -103,16 +137,34 @@ public class PainelMenuPrincipal extends javax.swing.JPanel implements PainelTro
                     .addComponent(jButton4)
                     .addComponent(jButton6))
                 .addGap(18, 18, 18)
-                .addComponent(jButton7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7)
+                    .addComponent(jButton10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
                 .addContainerGap(103, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(verificadorFuncionario.verificarPermissaoParaIncluir()) ControleDeTela.mudarPainel(ControleDeTela.TELA_ADD_FUNC);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(verificadorFuncionario.verificarPermissaoParaVisualizar()) ControleDeTela.mudarPainel(ControleDeTela.TELA_LS_FUNC);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        sessaoDeUsuario.deslogarUsuario();
+        ControleDeTela.mudarPainel(ControleDeTela.TELA_LOGIN);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -120,6 +172,7 @@ public class PainelMenuPrincipal extends javax.swing.JPanel implements PainelTro
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel nomeUsuarioLogado;
     // End of variables declaration//GEN-END:variables
 

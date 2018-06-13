@@ -14,24 +14,27 @@ public class RepositorioDeFuncionariosEmMemoria implements RepositorioDeFunciona
     }
     
     @Override
-    public void salvarFuncionario(Funcionario funcionario) {
+    public boolean salvarFuncionario(Funcionario funcionario) {
         this.funcionariosEmMemoria.add(funcionario);
+        return true;
     }
 
     @Override
-    public void excluirFuncionario(Funcionario funcionario) {
+    public boolean excluirFuncionario(Funcionario funcionario) {
         this.funcionariosEmMemoria.remove(funcionario);
+        return true;
     }
 
     @Override
-    public void atualizarFuncionario(Funcionario funcionario) {
+    public boolean atualizarFuncionario(Funcionario funcionario) {
         Funcionario funcionarioEmMemoria = this.buscarPorIdentificador(funcionario.getIdentificador());
         if(funcionarioEmMemoria == null){
             System.out.println("Deu erro aqui, o usuário precisa estar inserido para ser atualizado");
-            return;
+            return false;
         }
         this.excluirFuncionario(funcionarioEmMemoria);
         this.salvarFuncionario(funcionario);
+        return true;
     }
 
     @Override

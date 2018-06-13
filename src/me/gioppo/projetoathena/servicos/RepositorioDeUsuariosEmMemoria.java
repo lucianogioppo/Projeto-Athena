@@ -28,5 +28,11 @@ public class RepositorioDeUsuariosEmMemoria implements RepositorioDeUsuarios{
         }
         return null;
     }
+
+    @Override
+    public boolean adicionarUsuario(Usuario usuario) {
+        usuariosEmMemoria.add(usuario);
+        return true;
+    }
     
 }

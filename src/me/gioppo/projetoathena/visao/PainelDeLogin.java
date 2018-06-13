@@ -102,7 +102,6 @@ public class PainelDeLogin extends javax.swing.JPanel implements PainelTrocavel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("Hello world!");
         String nomeDeUsuario = campoUsuario.getText();
         String senha = new String(campoSenha.getPassword());
         
@@ -127,6 +126,7 @@ public class PainelDeLogin extends javax.swing.JPanel implements PainelTrocavel{
 
     @Override
     public void acoesQuandoTrocar() {
-        
+        campoUsuario.setText("");
+        campoSenha.setText("");
     }
 }
